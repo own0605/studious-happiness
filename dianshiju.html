@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电视剧频道</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #ff6b9d;
+            font-family: "幼圆", sans-serif;
+            text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+        }
+
+        .back-home {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            padding: 10px 25px;
+            border-radius: 30px;
+            background: #ff6b9d;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .anime-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .anime-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+            .anime-card:hover {
+                transform: translateY(-8px) scale(1.03);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .anime-card img {
+                width: 100%;
+                height: 280px;
+                object-fit: cover;
+            }
+
+        .anime-name {
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">张雨筝的电视剧频道</h1>
+
+        <div class="back-home">
+            <button class="back-btn" onclick="location.href='index.html'">← 返回首页</button>
+        </div>
+
+        <div class="anime-grid">
+            <div class="anime-card" onclick="window.open('https://v.qq.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=21" alt="封面">
+                <div class="anime-name">狂飙</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://v.qq.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=22" alt="封面">
+                <div class="anime-name">漫长的季节</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://v.qq.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=23" alt="封面">
+                <div class="anime-name">三体</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://v.qq.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=24" alt="封面">
+                <div class="anime-name">苍兰诀</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://v.qq.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=25" alt="封面">
+                <div class="anime-name">琅琊榜</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://v.qq.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=26" alt="封面">
+                <div class="anime-name">知否知否</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://v.qq.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=27" alt="封面">
+                <div class="anime-name">庆余年</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://v.qq.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=28" alt="封面">
+                <div class="anime-name">沉默的真相</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

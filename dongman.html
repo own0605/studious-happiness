@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动漫频道</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #ff6b9d;
+            font-family: "幼圆", sans-serif;
+            text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+        }
+
+        .back-home {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            padding: 10px 25px;
+            border-radius: 30px;
+            background: #ff6b9d;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .anime-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .anime-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+            .anime-card:hover {
+                transform: translateY(-8px) scale(1.03);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .anime-card img {
+                width: 100%;
+                height: 280px;
+                object-fit: cover;
+            }
+
+        .anime-name {
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">张雨筝的动漫频道</h1>
+
+        <div class="back-home">
+            <button class="back-btn" onclick="location.href='index.html'">← 返回首页</button>
+        </div>
+
+        <div class="anime-grid">https://vodcnd01.oag7h.com/20241125/wE7xE2su/index.m3u8
+            <div class="anime-card" onclick="window.open('https://vodcnd01.oag7h.com/20241125/pkcWVNP1/index.m3u8', '_blank')">
+                <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.5YXXrkBOdz6ElcQK_bnU8gHaKd?w=119&h=186&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="封面">
+                <div class="anime-name">海贼王</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://www.bilibili.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=12" alt="封面">
+                <div class="anime-name">鬼灭之刃</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://www.bilibili.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=13" alt="封面">
+                <div class="anime-name">咒术回战</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://www.bilibili.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=14" alt="封面">
+                <div class="anime-name">进击的巨人</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://www.bilibili.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=15" alt="封面">
+                <div class="anime-name">火影忍者</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://www.bilibili.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=16" alt="封面">
+                <div class="anime-name">死神 千年血战</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://www.bilibili.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=17" alt="封面">
+                <div class="anime-name">间谍过家家</div>
+            </div>
+            <div class="anime-card" onclick="window.open('https://www.bilibili.com/', '_blank')">
+                <img src="https://picsum.photos/300/400?random=18" alt="封面">
+                <div class="anime-name">链锯人</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
