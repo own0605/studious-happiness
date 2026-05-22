@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>动漫导航页</title>
+    <title>张雨筝的看片网站</title>
     <style>
         * {
             margin: 0;
@@ -15,9 +15,41 @@
             font-family: "Microsoft YaHei", sans-serif;
             background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
             color: white;
+            padding-top: 200px;
+            padding-left: 400px;
             min-height: 100vh;
-            padding: 40px 20px;
         }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            padding: 40px 20px 20px;
+            z-index: 999;
+        }
+
+        .player-sidebar {
+            position: fixed;
+            top: 10px;
+            left: 0;
+            width: 550px;
+            height: calc(100vh - 120px);
+            background: transparent;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+        }
+
+            .player-sidebar img {
+                height: 100%;
+                width: auto;
+                max-width: 100%;
+                object-fit: unset;
+            }
 
         .container {
             max-width: 1200px;
@@ -33,7 +65,6 @@
             text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
         }
 
-        /* 搜索框样式 */
         .search-box {
             text-align: center;
             margin-bottom: 25px;
@@ -66,18 +97,16 @@
             cursor: pointer;
         }
 
-        /* 分类导航栏样式 */
         .nav-tabs {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 40px;
             flex-wrap: wrap;
         }
 
         .nav-item {
             padding: 10px 25px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 25, 0.1);
             border-radius: 30px;
             font-size: 17px;
             font-weight: bold;
@@ -93,10 +122,19 @@
                 box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
             }
 
+        .section-title {
+            font-size: 24px;
+            margin: 50px 0 20px;
+            color: #fff;
+            border-left: 5px solid #ff6b9d;
+            padding-left: 15px;
+        }
+
         .anime-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 30px;
+            margin-bottom: 30px;
         }
 
         .anime-card {
@@ -131,65 +169,91 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="title">张雨筝的看片网站</h1>
-
-        <!-- 搜索框 -->
-        <div class="search-box">
-            <input type="text" id="searchInput" class="search-input" placeholder="搜索动漫名称..." oninput="searchAnime()">
-            <button class="search-btn" onclick="searchAnime()">搜索</button>
-        </div>
-
-        <!-- 新增分类导航栏 -->
-        <div class="nav-tabs">
-            <div class="nav-item" onclick="location.href='dongman.html'">动漫</div>
-            <div class="nav-item" onclick="location.href='dianshiju.html'">电视剧</div>
-            <div class="nav-item" onclick="location.href='dianying.html'">电影</div>
-            <div class="nav-item" onclick="location.href='zongyi.html'">综艺</div>
-        </div>
-
-        <div class="anime-grid" id="animeGrid">
-            <!-- 动漫1 -->
-            <div class="anime-card" onclick="window.open('https://www.bilibili.com/', '_blank')">
-                <img src="https://picsum.photos/300/400?random=1" alt="封面">
-                <div class="anime-name">海贼王</div>
+    <div class="header">
+        <div class="container">
+            <h1 class="title">张雨筝的看片网站</h1>
+            <div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="搜索全站内容">
+                <button class="search-btn" onclick="goSearch()">搜索</button>
             </div>
-
-            <!-- 动漫2 -->
-            <div class="anime-card" onclick="window.open('https://www.acfun.cn/', '_blank')">
-                <img src="https://picsum.photos/300/400?random=2" alt="封面">
-                <div class="anime-name">鬼灭之刃</div>
-            </div>
-
-            <!-- 动漫3 -->
-            <div class="anime-card" onclick="window.open('https://www.baidu.com/', '_blank')">
-                <img src="https://picsum.photos/300/400?random=3" alt="封面">
-                <div class="anime-name">咒术回战</div>
-            </div>
-
-            <!-- 动漫4 -->
-            <div class="anime-card" onclick="window.open('https://www.qq.com/', '_blank')">
-                <img src="https://picsum.photos/300/400?random=4" alt="封面">
-                <div class="anime-name">进击的巨人</div>
+            <div class="nav-tabs">
+                <div class="nav-item" onclick="location.href='dongman.html'">动漫</div>
+                <div class="nav-item" onclick="location.href='dianshiju.html'">电视剧</div>
+                <div class="nav-item" onclick="location.href='dianying.html'">电影</div>
+                <div class="nav-item" onclick="location.href='zongyi.html'">综艺</div>
             </div>
         </div>
     </div>
 
-    <!-- 搜索功能JS -->
-    <script>
-        function searchAnime() {
-            let input = document.getElementById("searchInput").value.toLowerCase();
-            let cards = document.getElementsByClassName("anime-card");
+    <div class="player-sidebar">
+        <img src="https://ts1.tc.mm.bing.net/th/id/OIP-C.fkr12mrPoPhYjfZ2GAf_wgHaNJ?w=193&h=333&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2" alt="">
+    </div>
 
-            for (let i = 0; i < cards.length; i++) {
-                let name = cards[i].getElementsByClassName("anime-name")[0].innerText.toLowerCase();
-                if (name.includes(input)) {
-                    cards[i].style.display = "block";
-                } else {
-                    cards[i].style.display = "none";
-                }
-            }
+    <div class="container">
+        <h2 class="section-title">🔥 热门动漫</h2>
+        <div class="anime-grid">
+            <div class="anime-card" onclick="goEpisode('海贼王', 100)">
+                <img src="https://ts1.tc.mm.bing.net/th/id/OIP-C.5YXXrkBOdz6ElcQK_bnU8gHaKd?w=193&h=273&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2" alt="">
+                <div class="anime-name">海贼王</div>
+            </div>
+            <div class="anime-card" onclick="goEpisode('鬼灭之刃', 30)">
+                <img src="https://ts1.tc.mm.bing.net/th/id/OIP-C.95thXwZ088wWhj38bLqBMwHaKU?w=193&h=270&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2" alt="">
+                <div class="anime-name">鬼灭之刃</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">🎬 热门电影</h2>
+        <div class="anime-grid">
+            <div class="anime-card" onclick="goEpisode('流浪地球', 1)">
+                <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.ZeiMSucbk8-srF78a5wqKwHaKp?w=202&h=290&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="">
+                <div class="anime-name">流浪地球</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">📺 热门电视剧</h2>
+        <div class="anime-grid">
+            <div class="anime-card" onclick="goEpisode('狂飙', 40)">
+                <img src="https://ts1.tc.mm.bing.net/th/id/OIP-C.BiN82RePSQFQAgBX_N0TEQHaM2?w=193&h=329&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2" alt="">
+                <div class="anime-name">狂飙</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">🎤 热门综艺</h2>
+        <div class="anime-grid">
+            <div class="anime-card" onclick="goEpisode('奔跑吧', 12)">
+                <img src="https://ts1.tc.mm.bing.net/th/id/OIP-C.w4DOmYqxvHRO9n51qTS2YgHaNz?w=193&h=341&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2" alt="">
+                <div class="anime-name">奔跑吧</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goSearch() {
+            let key = document.getElementById("searchInput").value.trim();
+            if (!key) return;
+            location.href = `search.html?q=${encodeURIComponent(key)}`;
         }
+
+        // 跳转到选集页面
+        function goEpisode(name, total) {
+            location.href = `episode.html?name=${encodeURIComponent(name)}&total=${total}`;
+        }
+
+        const images = [
+            "https://ts1.tc.mm.bing.net/th/id/OIP-C.fkr12mrPoPhYjfZ2GAf_wgHaNJ?w=193&h=333&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
+            "https://ts1.tc.mm.bing.net/th/id/OIP-C.fkr12mrPoPhYjfZ2GAf_wgHaNJ?w=193&h=333&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
+            "https://ts1.tc.mm.bing.net/th/id/OIP-C.7f_vMB1Mw0NO3fRuwTJjXQHaNK?w=193&h=333&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2",
+            "https://ts1.tc.mm.bing.net/th/id/OIP-C.UbbcCBYhIYcKE6DIXyDAoAHaPp?w=193&h=346&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2"
+        ];
+
+        const img = document.querySelector(".player-sidebar img");
+        let i = 0;
+
+        setInterval(() => {
+            i++;
+            if (i >= images.length) i = 0;
+            img.src = images[i];
+        }, 2000);
     </script>
 </body>
 </html>

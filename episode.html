@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选集播放</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            padding-top: 300px;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            padding: 40px 20px 20px;
+            z-index: 999;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #ff6b9d;
+            font-family: "幼圆", sans-serif;
+            text-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+        }
+
+        .search-box {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .search-input {
+            width: 60%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            backdrop-filter: blur(10px);
+        }
+
+            .search-input::placeholder {
+                color: #ccc;
+            }
+
+        .search-btn {
+            padding: 12px 25px;
+            margin-left: 10px;
+            border-radius: 30px;
+            border: none;
+            background: #ff6b9d;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+            .nav-item:hover {
+                background: #ff6b9d;
+                transform: scale(1.08);
+                box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+            }
+
+        .episode-layout {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-top: 30px;
+        }
+
+        .current-poster {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            overflow: hidden;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 30px;
+        }
+
+            .current-poster img {
+                width: 100%;
+                height: 400px;
+                object-fit: cover;
+            }
+
+            .current-poster .name {
+                padding: 15px;
+                font-size: 20px;
+                font-weight: bold;
+                color: #ff6b9d;
+            }
+
+        .episode-right {
+            flex: 1;
+        }
+
+        .group-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .group-tab {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+            .group-tab.active {
+                background: #ff6b9d;
+            }
+
+        /* 👇 关键：整齐网格排列 */
+        .episode-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 10px;
+            justify-items: center;
+        }
+
+        .episode-btn {
+            width: 100%;
+            padding: 14px 0;
+            background: #ff6b9d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+            .episode-btn:hover {
+                transform: scale(1.05);
+                background: #ff8da1;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <h1 class="title">张雨筝的看片网站</h1>
+            <div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="搜索全站内容">
+                <button class="search-btn" onclick="goSearch()">搜索</button>
+            </div>
+            <div class="nav-tabs">
+                <div class="nav-item" onclick="location.href='index.html'">首页</div>
+                <div class="nav-item" onclick="location.href='dongman.html'">动漫</div>
+                <div class="nav-item" onclick="location.href='dianshiju.html'">电视剧</div>
+                <div class="nav-item" onclick="location.href='dianying.html'">电影</div>
+                <div class="nav-item" onclick="location.href='zongyi.html'">综艺</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="episode-layout">
+            <div class="current-poster">
+                <img id="posterImg" src="">
+                <div class="name" id="videoTitle"></div>
+            </div>
+
+            <div class="episode-right">
+                <div class="group-tabs" id="groupTabs"></div>
+                <div class="episode-list" id="episodeList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goSearch() {
+            let key = document.getElementById("searchInput").value.trim();
+            if (!key) return;
+            location.href = `search.html?q=${encodeURIComponent(key)}`;
+        }
+
+        const params = new URLSearchParams(location.search);
+        const name = params.get("name");
+        const total = parseInt(params.get("total"));
+
+        const posterMap = {
+            "海贼王": "https://ts1.tc.mm.bing.net/th/id/OIP-C.5YXXrkBOdz6ElcQK_bnU8gHaKd",
+            "鬼灭之刃": "https://ts1.tc.mm.bing.net/th/id/OIP-C.95thXwZ088wWhj38bLqBMwHaKU",
+            "流浪地球": "https://tse3-mm.cn.bing.net/th/id/OIP-C.ZeiMSucbk8-srF78a5wqKwHaKp",
+            "狂飙": "https://ts1.tc.mm.bing.net/th/id/OIP-C.BiN82RePSQFQAgBX_N0TEQHaM2",
+            "奔跑吧": "https://ts1.tc.mm.bing.net/th/id/OIP-C.w4DOmYqxvHRO9n51qTS2YgHaNz"
+        };
+
+        document.getElementById("videoTitle").innerText = name;
+        document.getElementById("posterImg").src = posterMap[name] || "";
+
+        const groups = [];
+        const groupCount = Math.ceil(total / 50);
+        for (let g = 1; g <= groupCount; g++) {
+            let start = (g - 1) * 50 + 1;
+            let end = Math.min(g * 50, total);
+            groups.push({ start, end });
+        }
+
+        const groupTabs = document.getElementById("groupTabs");
+        const episodeList = document.getElementById("episodeList");
+
+        groups.forEach((g, idx) => {
+            let tab = document.createElement("div");
+            tab.className = "group-tab";
+            if (idx === 0) tab.classList.add("active");
+            tab.innerText = `${g.start}~${g.end}`;
+            tab.onclick = () => showGroup(idx);
+            groupTabs.appendChild(tab);
+        });
+
+        function showGroup(index) {
+            document.querySelectorAll(".group-tab").forEach((t, i) => {
+                t.classList.toggle("active", i === index);
+            });
+
+            episodeList.innerHTML = "";
+            let { start, end } = groups[index];
+            for (let i = start; i <= end; i++) {
+                let btn = document.createElement("button");
+                btn.className = "episode-btn";
+                btn.innerText = `第${i}集`;
+                btn.onclick = () => alert(`打开 ${name} 第${i}集`);
+                episodeList.appendChild(btn);
+            }
+        }
+
+        showGroup(0);
+    </script>
+</body>
+</html>
